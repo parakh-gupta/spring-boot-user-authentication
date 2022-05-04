@@ -1,32 +1,26 @@
-package springboot.usermanagement.model;
+package springboot.usermanagement.modelDTO;
 
-import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "Users")
-public class User {
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-
+public class UserDTO {
+    @NotBlank
+    @Size(min = 4, max = 40)
     private String name;
 
+    @NotBlank
+    @Size(min = 3, max = 15)
     private String username;
 
+    @NotBlank
+    @Size(max = 40)
+    @Email
     private String email;
 
+    @NotBlank
+    @Size(min = 6, max = 20)
     private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Roles role = Roles.ADMIN;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -58,13 +52,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Roles getRole() {
-        return role;
-    }
-
-    public void setRole(Roles role) {
-        this.role = role;
     }
 }

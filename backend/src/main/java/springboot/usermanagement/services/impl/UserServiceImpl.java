@@ -1,6 +1,7 @@
 package springboot.usermanagement.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import springboot.usermanagement.model.User;
 import springboot.usermanagement.repository.UserRepository;
@@ -14,6 +15,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
     @Override
     public User getUser(Long id){
         return userRepository.getById(id);
@@ -26,6 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
