@@ -1,1 +1,1 @@
-# reactjs-spring-boot-user-management
+# Spring boot JWT user authentication
